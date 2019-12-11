@@ -1,0 +1,4 @@
+name: TownOfSalem
+version: 1.0.0
+main: me.nbarudi.main.TownOfSalem
+api-version: 1.13
