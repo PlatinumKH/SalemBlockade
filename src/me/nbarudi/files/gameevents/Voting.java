@@ -29,7 +29,7 @@ public class Voting {
 		Bukkit.getScheduler().cancelTask(t);
 		makeVoteBook();
 		neededVotes = (TownOfSalem.alive.size() / 2) + 1;
-		Announcements.globalAnnounce(neededVotes + " §2are needed to judge a player!");
+		Announcements.globalAnnounce(neededVotes + " §2 votes are needed to judge a player!");
 		
 		whoVote.clear();
 		pvotes.clear();
