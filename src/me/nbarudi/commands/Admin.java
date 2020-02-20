@@ -23,19 +23,19 @@ public class Admin extends BukkitCommand {
 		}
 		
 		if(args.length < 2) {
-			sender.sendMessage(ChatColor.RED + "Please do not use this command. it is all handled for you at night.");
+			sender.sendMessage(ChatColor.RED + "Please do not use this command. It is all handled for you at night.");
 			return false;
 		}
 		
 		if(!args[0].equals(TownOfSalem.key)) {
-			sender.sendMessage(ChatColor.RED + "Please do not use this command. it is all handled for you at night.");
+			sender.sendMessage(ChatColor.RED + "Please do not use this command. It is all handled for you at night.");
 			return false;
 		}
 		
 		if(args[1].equalsIgnoreCase("kill")) {
 			Player t = Bukkit.getPlayer(args[2]);
 			if(t == null) {
-				sender.sendMessage("Sorry, Can't find the player you stated!");
+				sender.sendMessage("Sorry, can't find the player you stated!");
 				return false;
 			}
 			
