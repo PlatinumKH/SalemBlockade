@@ -6,6 +6,7 @@ import me.nbarudi.main.TownOfSalem;
 import me.nbarudi.utils.InfoManager;
 
 public class Night {
+	public static boolean countdown = false;
 	public static int task = 0;
 	public static double i = 0;
 	public static void triggerNextNight() {
@@ -16,9 +17,15 @@ public class Night {
 					i = 0;
 					Day.triggerNextDay();
 					Bukkit.getScheduler().cancelTask(task);
+					countdown = false;
 				}else {
-					InfoManager.setBossBar("Night §b "+ TownOfSalem.NightNumber +"§r.", 1 - i);
-					i = i + 0.01;
+					if(!countdown) {
+						InfoManager.setBossBar("Night §b "+ TownOfSalem.NightNumber +"§r.", 1 - i);
+					}
+					else {
+						InfoManager.setBossBar("Night §b "+ TownOfSalem.NightNumber +"§r.", 1 - i);
+						i = i + 0.01;
+					}
 				}
 			}
 		}, 100, 6);

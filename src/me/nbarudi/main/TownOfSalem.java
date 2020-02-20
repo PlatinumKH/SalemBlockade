@@ -13,14 +13,19 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.nbarudi.commands.Admin;
+import me.nbarudi.commands.Announce;
 import me.nbarudi.commands.ForceStart;
 import me.nbarudi.commands.ForceVote;
+import me.nbarudi.commands.HostMode;
+import me.nbarudi.commands.Menu;
 import me.nbarudi.commands.Vote;
 import me.nbarudi.events.InventoryInteract;
 import me.nbarudi.events.PlayerChat;
 import me.nbarudi.events.PlayerJoin;
 import me.nbarudi.events.SignBook;
 import me.nbarudi.files.gameevents.Judgement;
+import me.nbarudi.files.gamemodes.GameMode;
+import me.nbarudi.files.gamemodes.Normal.Classic;
 import me.nbarudi.files.handlers.KillHandler;
 import me.nbarudi.files.roles.Role;
 import me.nbarudi.files.roles.Mafia.Blackmailer;
@@ -54,13 +59,24 @@ import me.nbarudi.files.roles.Town.Transporter;
 import me.nbarudi.files.roles.Town.VampireHunter;
 import me.nbarudi.files.roles.Town.Veteran;
 import me.nbarudi.files.roles.Town.Vigilante;
+import me.nbarudi.gamesystems.host.HostTemplate;
+import me.nbarudi.gamesystems.host.ListAbilities;
+import me.nbarudi.gamesystems.host.ListVisits;
+import me.nbarudi.gamesystems.host.RunAbility;
+import me.nbarudi.gamesystems.host.StartCountdown;
+import me.nbarudi.gamesystems.host.StartGame;
+import me.nbarudi.gamesystems.host.inventory.Manager;
 import me.nbarudi.utils.ConfigManager;
+import me.nbarudi.utils.GamemodeScore;
 import me.nbarudi.utils.KeyGenerator;
 
 public class TownOfSalem extends JavaPlugin {
 	
 	//Game Stuff
 	public static ArrayList<Role> roleinfo = new ArrayList<Role>();
+	public static ArrayList<String> tempImmune = new ArrayList<String>();
+	public static ArrayList<HostTemplate> hostcommands = new ArrayList<HostTemplate>();
+	public static ArrayList<GameMode> gms = new ArrayList<GameMode>();
 	
 	//Role Stuff
 	public static Player mayor;
@@ -68,20 +84,28 @@ public class TownOfSalem extends JavaPlugin {
 	
 	//Player Managment
 	public static Map<String, Role> plrs = new HashMap<String, Role>();
+	public static Map<Role, String> rplrs = new HashMap<Role, String>();
 	public static ArrayList<Player> alive = new ArrayList<Player>();
+	public static ArrayList<Player> spectators = new ArrayList<Player>();
 	public static Player onStand;
 	
 	//Global Values
 	public static int DayNumber = 0;
 	public static int NightNumber = 0;
 	public static boolean isDefending = false;
+	public static GameMode gm = new Classic("Classic");
+	public static boolean gameStarted = false;
 	
 	//Instances
 	public static Plugin instance;
 	public static String key;
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onEnable() {
+		
+		GamemodeScore.setupScoreboard(this, gm);
+		
 		//Register Instances
 		instance = this;
 		key = KeyGenerator.randomAlphaNumeric(15);
@@ -96,6 +120,17 @@ public class TownOfSalem extends JavaPlugin {
 		
 		//Register Game Related Things (Roles, Gamemodes, Etc..)
 		registerRoles();
+		
+		//Register host commands
+		registerHostCommands();
+		
+		//Setup
+		if(ConfigManager.getRankData().getConfigurationSection("Players.nbarudi") == null){
+			ConfigManager.getRankData().set("Players.nbarudi.Rank", "Manager");
+			ConfigManager.getRankData().set("Players.nbarudi.UUID", Bukkit.getOfflinePlayer("nbarudi").getUniqueId().toString());
+			ConfigManager.ranksSave();
+		}
+		
 	}
 	
 	public void registerCommands() {
@@ -110,6 +145,9 @@ public class TownOfSalem extends JavaPlugin {
 			commandMap.register("vote", new Vote("Vote"));
 			commandMap.register("forcevote", new ForceVote("forcevote"));
 			commandMap.register("admin", new Admin("admin"));
+			commandMap.register("menu", new Menu("menu"));
+			commandMap.register("hostmode", new HostMode("hostmode"));
+			commandMap.register("announce", new Announce("announce"));
 		}  catch (NoSuchFieldException | IllegalAccessException e) {
             getLogger().severe(e.getLocalizedMessage());
             e.printStackTrace();
@@ -132,6 +170,9 @@ public class TownOfSalem extends JavaPlugin {
 		
 		//Ability Events
 		pm.registerEvents(new KillHandler(), this);
+		
+		//Host Events
+		pm.registerEvents(new Manager(), this);
 		
 	}
 	
@@ -185,6 +226,18 @@ public class TownOfSalem extends JavaPlugin {
 		roleinfo.add(new SerialKiller("SerialKiller"));
 		roleinfo.add(new Survivor("Survivor"));
 		roleinfo.add(new Witch("Witch"));
+	}
+	
+	public void registerGameModes() {
+		gms.add(new Classic("Classic"));
+	}
+	
+	public void registerHostCommands() {
+		hostcommands.add(new StartGame("Start Game"));
+		hostcommands.add(new ListVisits("List Visits"));
+		hostcommands.add(new ListAbilities("List Abilities"));
+		hostcommands.add(new RunAbility("Run Abilities"));
+		hostcommands.add(new StartCountdown("Start Countdown"));
 	}
 
 }
