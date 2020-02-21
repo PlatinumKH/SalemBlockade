@@ -20,8 +20,10 @@ public class Judgement implements Listener{
 	public static HashMap<Player, Boolean> votes = new HashMap<Player, Boolean>();
 	static int totalGuilties = 0;
 	static int totalInnos = 0;
+	static boolean onjudgement = false;
 	
 	public static void triggerJudgement() {
+		onjudgement = true;
 		TownOfSalem.isDefending = false;
 		Announcements.globalAnnounce("§2Town may now vote §aInnocent §2(inno in chat) or §4Guilty §2(guilty in chat)");
 		task = Bukkit.getScheduler().scheduleSyncRepeatingTask(TownOfSalem.instance, new Runnable() {
@@ -34,9 +36,11 @@ public class Judgement implements Listener{
 					if(totalGuilties > totalInnos) {
 						Announcements.globalAnnounce(TownOfSalem.onStand.getName() + " §2has been voted §4Guilty§2!");
 						LastWords.triggerLastWords(TownOfSalem.onStand);
+						onjudgement = false;
 					}else {
 						Announcements.globalAnnounce(TownOfSalem.onStand.getName() + " §2has been voted §aInnocent§2!");
 						Voting.triggerVoting(task);
+						onjudgement = false;
 					}
 				}else {
 					InfoManager.setBossBar("Day §b" + TownOfSalem.DayNumber+ "§r: Judgement.", 1 - i);
@@ -49,7 +53,7 @@ public class Judgement implements Listener{
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent event) {
 		String msg = event.getMessage();
-		
+		if(!onjudgement) return;
 		if(event.getPlayer() == TownOfSalem.onStand) return;
 		
 		if(votes.get(event.getPlayer()) != null) {
