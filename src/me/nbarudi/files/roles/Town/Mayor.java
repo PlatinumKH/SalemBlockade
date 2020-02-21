@@ -35,6 +35,8 @@ public class Mayor extends Role {
 		this.team = ChatColor.GREEN;
 		this.dayra = RoleAbilities.REVEAL;
 		this.disabled = true;
+		// Does not visit
+		this.priority = 0;
 	}
 
 }

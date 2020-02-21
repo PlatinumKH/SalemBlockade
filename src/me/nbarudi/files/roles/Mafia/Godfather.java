@@ -35,6 +35,7 @@ public class Godfather extends Role {
 		this.winconditions = wincond;
 		this.team = ChatColor.RED;
 		this.ra = RoleAbilities.KILL;
+		this.priority = 5;
 	}
 
 }

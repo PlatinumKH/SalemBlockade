@@ -31,6 +31,7 @@ public class Medium extends Role{
 		this.abilities = abil;
 		this.winconditions = wincond;
 		this.team = ChatColor.GREEN;
+		this.priority = 1;
 	}
 
 }

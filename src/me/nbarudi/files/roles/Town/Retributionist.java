@@ -32,6 +32,7 @@ public class Retributionist extends Role {
 		this.winconditions = wincond;
 		this.team = ChatColor.GREEN;
 		this.ra = RoleAbilities.REZ;
+		this.priority = 3;
 	}
 
 }

@@ -36,6 +36,7 @@ public class Blackmailer extends Role {
 		this.winconditions = wincond;
 		this.team = ChatColor.RED;
 		this.ra = RoleAbilities.BM;
+		this.priority = 3;
 	}
 
 }

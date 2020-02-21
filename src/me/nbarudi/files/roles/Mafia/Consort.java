@@ -35,6 +35,7 @@ public class Consort extends Role {
 		this.winconditions = wincond;
 		this.team = ChatColor.RED;
 		this.ra = RoleAbilities.ROLEBLOCK;
+		this.priority = 2;
 	}
 
 }

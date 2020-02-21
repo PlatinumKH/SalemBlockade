@@ -37,6 +37,7 @@ public class Forger extends Role {
 		this.team = ChatColor.RED;
 		this.ra = RoleAbilities.FORGE;
 		this.disabled = true;
+		this.priority = 3;
 	}
 
 }

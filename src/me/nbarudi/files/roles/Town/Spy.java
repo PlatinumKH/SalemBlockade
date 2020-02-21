@@ -32,6 +32,7 @@ public class Spy extends Role {
 		this.winconditions = wincond;
 		this.team = ChatColor.GREEN;
 		this.ra = RoleAbilities.BUG;
+		this.priority = 6;
 	}
 
 }

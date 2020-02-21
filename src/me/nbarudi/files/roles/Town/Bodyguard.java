@@ -34,7 +34,7 @@ public class Bodyguard extends Role{
 		this.winconditions = wincond;
 		this.team = ChatColor.GREEN;
 		this.ra = RoleAbilities.GUARD;
-		
+		this.priority = 3;
 	}
 
 }

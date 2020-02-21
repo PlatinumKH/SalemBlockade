@@ -36,6 +36,7 @@ public class Disguiser extends Role {
 		this.winconditions = wincond;
 		this.team = ChatColor.RED;
 		this.ra = RoleAbilities.DISGUISE;
+		this.priority = 5;
 	}
 
 }

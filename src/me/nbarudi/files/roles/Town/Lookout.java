@@ -31,7 +31,7 @@ public class Lookout extends Role {
 		this.abilities = abil;
 		this.winconditions = wincond;
 		this.ra = RoleAbilities.WATCH;
-		
+		this.priority = 4;
 		
 	}
 

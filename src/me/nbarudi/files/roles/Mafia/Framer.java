@@ -35,6 +35,7 @@ public class Framer extends Role {
 		this.winconditions = wincond;
 		this.team = ChatColor.RED;
 		this.ra = RoleAbilities.FRAME;
+		this.priority = 3;
 	}
 
 }

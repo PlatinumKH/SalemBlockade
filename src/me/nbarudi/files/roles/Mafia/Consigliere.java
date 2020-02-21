@@ -34,6 +34,7 @@ public class Consigliere extends Role{
 		this.winconditions = wincond;
 		this.team = ChatColor.RED;
 		this.ra = RoleAbilities.GETROLE;
+		this.priority = 4;
 	}
 
 }

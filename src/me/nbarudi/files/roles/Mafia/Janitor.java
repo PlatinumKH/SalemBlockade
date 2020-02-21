@@ -37,6 +37,7 @@ public class Janitor extends Role {
 		this.winconditions = wincond;
 		this.team = ChatColor.RED;
 		this.ra = RoleAbilities.CLEAN;
+		this.priority = 3;
 	}
 
 }

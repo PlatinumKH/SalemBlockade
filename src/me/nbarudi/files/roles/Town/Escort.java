@@ -33,6 +33,7 @@ public class Escort extends Role{
 		this.winconditions = wincond;
 		this.team = ChatColor.GREEN;
 		this.ra = RoleAbilities.ROLEBLOCK;
+		this.priority = 2;
 	}
 
 }

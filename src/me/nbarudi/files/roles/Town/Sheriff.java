@@ -31,6 +31,7 @@ public class Sheriff extends Role {
 		this.winconditions = wincond;
 		this.team = ChatColor.GREEN;
 		this.ra = RoleAbilities.SUSCHECK;
+		this.priority = 4;
 	}
 
 }

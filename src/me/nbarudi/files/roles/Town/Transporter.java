@@ -37,6 +37,7 @@ public class Transporter extends Role {
 		this.ra = RoleAbilities.SWAP;
 		this.disabled = true;
 		this.rbimmune = true;
+		this.priority = 1;
 	}
 
 }

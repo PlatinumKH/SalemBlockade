@@ -35,6 +35,7 @@ public class VampireHunter extends Role{
 		this.winconditions = wincond;
 		this.team = ChatColor.GREEN;
 		this.ra = RoleAbilities.VAMPCHECK;
+		this.priority = 5;
 	}
 
 }

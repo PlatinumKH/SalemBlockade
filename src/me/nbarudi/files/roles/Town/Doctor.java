@@ -33,6 +33,7 @@ public class Doctor extends Role {
 		this.winconditions = wincond;
 		this.team = ChatColor.GREEN;
 		this.ra = RoleAbilities.HEAL;
+		this.priority = 3;
 	}
 
 }

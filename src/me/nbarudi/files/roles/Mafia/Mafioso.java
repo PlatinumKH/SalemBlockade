@@ -34,6 +34,7 @@ public class Mafioso extends Role{
 		this.teamname = "§cMafia";
 		this.unique = true;
 		this.ra = RoleAbilities.KILL;
+		this.priority = 5;
 	}
 
 }

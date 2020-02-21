@@ -30,6 +30,7 @@ public class Investigator extends Role {
 		this.winconditions = wincond;
 		this.team = ChatColor.GREEN;
 		this.ra = RoleAbilities.INVEST;
+		this.priority = 4;
 	}
 
 }

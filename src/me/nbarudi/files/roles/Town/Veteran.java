@@ -37,6 +37,8 @@ public class Veteran extends Role{
 		this.unique = true;
 		this.rbimmune = true;
 		this.ra = RoleAbilities.ALERT;
+		// While on alert
+		this.priority = 1;
 		
 	}
 
