@@ -25,7 +25,6 @@ public class Godfather extends Role {
 		
 		ArrayList<String> wincond = new ArrayList<String>();
 		wincond.add("§cMafia");
-		wincond.add("§6Survivor");
 		wincond.add("§5Witch");
 		
 		this.teamname = "§cMafia";

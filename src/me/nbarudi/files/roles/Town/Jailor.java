@@ -25,7 +25,6 @@ public class Jailor extends Role {
 		
 		ArrayList<String> wincond = new ArrayList<String>();
 		wincond.add("§aTown");
-		wincond.add("§6Survivor");
 		
 		this.attributes = atrib;
 		this.abilities = abil;

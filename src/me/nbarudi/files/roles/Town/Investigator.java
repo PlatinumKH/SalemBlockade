@@ -22,7 +22,6 @@ public class Investigator extends Role {
 		abil.add("Investigate one person each night for a clue to their role.");
 		
 		wincond.add("§aTown");
-		wincond.add("§6Survivor");
 		
 		this.teamname = "§aTown\n(§bInvestigative§a)";
 		this.attributes = atrib;

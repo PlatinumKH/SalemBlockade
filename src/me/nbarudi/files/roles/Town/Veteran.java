@@ -26,7 +26,7 @@ public class Veteran extends Role{
 		atrib.add("You cannot be role blocked.");
 		
 		ArrayList<String> wincond = new ArrayList<String>();
-		
+		wincond.add("§aTown");
 		
 		this.teamname = "§aTown\n(§bKilling§a)";
 		

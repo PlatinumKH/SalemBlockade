@@ -25,7 +25,6 @@ public class Mayor extends Role {
 		
 		ArrayList<String> wincond = new ArrayList<String>();
 		wincond.add("§aTown");
-		wincond.add("§6Survivor");
 		
 		this.teamname = "§aTown\n(§bSupport§a)";
 		
